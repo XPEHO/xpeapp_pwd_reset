@@ -59,7 +59,7 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
       <header class="password-reset__header">
         <figure class="password-reset__logo-wrapper">
           <img
-            src="@/assets/Logo/LogoXpeApp.svg"
+            src="@/assets/logo/LogoXpeApp.svg"
             alt="Logo XpeApp"
             class="password-reset__logo"
           />
