@@ -1,5 +1,5 @@
 <script setup lang="ts">
-export type ButtonColor = 'white' | 'red' | 'green' | 'google' | 'apple' | 'microsoft'
+import { ButtonColor } from '@/types/button'
 
 defineProps<{
   text: string
@@ -20,7 +20,7 @@ defineEmits<{
     @click="$emit('click')"
   >
     <slot name="icon"></slot>
-    <p class="button-text">{{ text }}</p>
+    <span class="button-text">{{ text }}</span>
   </button>
 </template>
 
@@ -67,7 +67,7 @@ defineEmits<{
 }
 
 .button-red .button-text {
-  color: #ffffff;
+  color: var(--button-red-text, #ffffff);
 }
 
 /* WHITE BUTTON VARIANT */
@@ -83,7 +83,7 @@ defineEmits<{
 }
 
 .button-white .button-text {
-  color: #333333;
+  color: var(--button-white-text, #333333);
 }
 
 /* GREEN BUTTON VARIANT (XPEHO) */
@@ -99,7 +99,7 @@ defineEmits<{
 }
 
 .button-green .button-text {
-  color: #ffffff;
+  color: var(--button-green-text, #ffffff);
 }
 
 /* GOOGLE BUTTON VARIANT */
@@ -115,7 +115,7 @@ defineEmits<{
 }
 
 .button-google .button-text {
-  color: #ffffff;
+  color: var(--button-google-text, #ffffff);
 }
 
 /* APPLE BUTTON VARIANT */
@@ -131,7 +131,7 @@ defineEmits<{
 }
 
 .button-apple .button-text {
-  color: #ffffff;
+  color: var(--button-apple-text, #ffffff);
 }
 
 /* MICROSOFT BUTTON VARIANT */
@@ -147,7 +147,7 @@ defineEmits<{
 }
 
 .button-microsoft .button-text {
-  color: #ffffff;
+  color: var(--button-microsoft-text, #ffffff);
 }
 
 /* ========================================

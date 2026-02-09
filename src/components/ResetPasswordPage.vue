@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { RouteName } from '@/types/auth'
 import AppButton from '@/components/ui/AppButton.vue'
+import { ButtonColor } from '@/types/button'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -170,7 +171,7 @@ function handleBack(): void {
 
           <AppButton
             :text="isLoading ? 'Chargement...' : 'Changer le mot de passe'"
-            color="green"
+            :color="ButtonColor.Green"
             :disabled="!isFormValid || isLoading"
             @click="handleSubmit"
           />
@@ -271,8 +272,8 @@ function handleBack(): void {
 }
 
 .reset-password__message--error {
-  background-color: rgba(220, 53, 69, 0.1);
-  color: #dc3545;
+  background-color: var(--reset-error-bg, rgba(220, 53, 69, 0.1));
+  color: var(--reset-error-text, #dc3545);
 }
 
 .form-group {
@@ -284,7 +285,7 @@ function handleBack(): void {
 .form-group__label {
   font-size: var(--font-size-sm);
   font-weight: 500;
-  color: var(--color-text-dark);
+  color: var(--form-label-text, var(--color-text-dark));
 }
 
 .form-group__input-wrapper {
@@ -296,7 +297,7 @@ function handleBack(): void {
 .form-group__input {
   padding: var(--spacing-sm);
   padding-right: 3rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--form-input-border, #ddd);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-base);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -348,16 +349,16 @@ function handleBack(): void {
 }
 
 .form-group__input--error {
-  border-color: #dc3545;
+  border-color: var(--form-input-error, #dc3545);
 }
 
 .form-group__input--error:focus {
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  box-shadow: 0 0 0 0.2rem var(--form-input-error-focus, rgba(220, 53, 69, 0.25));
 }
 
 .form-group__error {
   font-size: var(--font-size-sm);
-  color: #dc3545;
+  color: var(--form-error-text, #dc3545);
 }
 
 .password-strength {
@@ -369,7 +370,7 @@ function handleBack(): void {
 .password-strength__bar {
   flex: 1;
   height: 0.25rem;
-  background-color: #eee;
+  background-color: var(--password-bar-bg, #eee);
   border-radius: 0.125rem;
   position: relative;
   overflow: hidden;
@@ -391,17 +392,17 @@ function handleBack(): void {
 
 .password-strength__bar--level-1::after {
   width: 25%;
-  background-color: #dc3545;
+  background-color: var(--password-bar-weak, #dc3545);
 }
 
 .password-strength__bar--level-2::after {
   width: 50%;
-  background-color: #ffc107;
+  background-color: var(--password-bar-medium, #ffc107);
 }
 
 .password-strength__bar--level-3::after {
   width: 75%;
-  background-color: #28a745;
+  background-color: var(--password-bar-strong, #28a745);
 }
 
 .password-strength__bar--level-4::after {
@@ -422,7 +423,7 @@ function handleBack(): void {
 
 .reset-password__back {
   background: none;
-  color: var(--color-text-light);
+  color: var(--reset-back-text, var(--color-text-light));
   font-size: var(--font-size-sm);
   transition: color 0.2s ease;
 }

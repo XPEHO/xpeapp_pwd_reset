@@ -17,6 +17,10 @@ const router = createRouter({
       name: RouteName.ResetPassword,
       component: ResetPasswordPage,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: { name: RouteName.Login }
     }
   ]
 })

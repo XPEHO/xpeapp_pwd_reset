@@ -4,7 +4,8 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { signInWithSso } from '@/services/authService'
 import { SsoProvider, RouteName } from '@/types/auth'
-import AppButton, { type ButtonColor } from '@/components/ui/AppButton.vue'
+import AppButton from '@/components/ui/AppButton.vue'
+import { ButtonColor } from '@/types/button'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -22,17 +23,17 @@ const ssoButtons: SsoButton[] = [
   {
     provider: SsoProvider.Google,
     label: 'Continuer avec Google',
-    color: 'google'
+    color: ButtonColor.Google
   },
   {
     provider: SsoProvider.Apple,
     label: 'Continuer avec Apple',
-    color: 'apple'
+    color: ButtonColor.Apple
   },
   {
     provider: SsoProvider.Microsoft,
     label: 'Continuer avec Microsoft',
-    color: 'microsoft'
+    color: ButtonColor.Microsoft
   }
 ]
 
@@ -143,8 +144,8 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
 .password-reset__error {
   padding: var(--spacing-sm);
   border-radius: var(--radius-sm);
-  background-color: rgba(220, 53, 69, 0.1);
-  color: #dc3545;
+  background-color: var(--reset-error-bg, rgba(220, 53, 69, 0.1));
+  color: var(--reset-error-text, #dc3545);
   font-size: var(--font-size-sm);
   text-align: center;
   margin-bottom: var(--spacing-md);
@@ -165,13 +166,13 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
 .password-reset__title {
   font-size: var(--font-size-xl);
   font-weight: 700;
-  color: var(--color-text-dark);
+  color: var(--reset-title-text, var(--color-text-dark));
   margin-bottom: var(--spacing-xs);
 }
 
 .password-reset__subtitle {
   font-size: var(--font-size-sm);
-  color: var(--color-text-light);
+  color: var(--reset-subtitle-text, var(--color-text-light));
   line-height: 1.6;
 }
 
@@ -195,7 +196,7 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
   display: block;
   width: 1.25rem;
   height: 1.25rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z'/%3E%3C/svg%3E");
+  background-image: url('@/assets/svg/google.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -205,7 +206,7 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
   display: block;
   width: 1.25rem;
   height: 1.25rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z'/%3E%3C/svg%3E");
+  background-image: url('@/assets/svg/apple.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -215,7 +216,7 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
   display: block;
   width: 1.25rem;
   height: 1.25rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M2,3H11V12H2V3M11,22H2V13H11V22M21,3V12H12V3H21M21,22H12V13H21V22Z'/%3E%3C/svg%3E");
+  background-image: url('@/assets/svg/microsoft.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -224,18 +225,18 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
   margin-top: var(--spacing-lg);
   text-align: center;
   font-size: var(--font-size-sm);
-  color: var(--color-text-light);
+  color: var(--reset-footer-text, var(--color-text-light));
 }
 
 .password-reset__support-link {
-  color: var(--color-primary);
+  color: var(--reset-support-link, var(--color-primary));
   text-decoration: underline;
   transition: color 0.2s ease;
 }
 
 .password-reset__support-link:hover,
 .password-reset__support-link:focus {
-  color: var(--color-primary-hover);
+  color: var(--reset-support-link-hover, var(--color-primary-hover));
 }
 
 /* Responsive - Safe area pour mobile */
