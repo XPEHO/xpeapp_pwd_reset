@@ -130,12 +130,11 @@ describe('ResetPasswordPage.vue', () => {
 
   it('navigates back to the login page when the back button is clicked', async () => {
     const wrapper = createWrapper()
-    const store = useAuthStore()
-    
-    const backLink = wrapper.find('a')
-    if (backLink.exists()) {
-      await backLink.trigger('click')
-    }
+    const backButton = wrapper.find('footer .reset-password__back')
+    expect(backButton.exists()).toBe(true)
+    await backButton.trigger('click')
+    await flushPromises()
+    expect(wrapper.vm.$router.currentRoute.value.name).toBe(RouteName.Login)
   })
 
   it('renders the XpeApp logo image', () => {
@@ -174,9 +173,6 @@ describe('ResetPasswordPage.vue', () => {
   it('calls handleBack and clears user store when the back link is clicked', async () => {
     const wrapper = createWrapper()
     const store = useAuthStore()
-    
-    // Find the back button/link
-    const backButton = wrapper.find('[data-testid="back-link"]') || wrapper.find('button:last-child')
     
     // Trigger the back action through the exposed function
     const vm = wrapper.vm as any
