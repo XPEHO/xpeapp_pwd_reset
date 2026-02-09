@@ -78,7 +78,7 @@ function handleBack(): void {
       <header class="reset-password__header">
         <figure class="reset-password__logo-wrapper">
           <img
-            src="@/assets/Logo/logoXpeApp.svg"
+            src="@/assets/logo/LogoXpeApp.svg"
             alt="Logo XpeApp"
             class="reset-password__logo"
           />
