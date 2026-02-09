@@ -30,8 +30,8 @@ const passwordStrength = computed(() => {
   let strength = 0
   if (/[a-z]/.test(pwd)) strength++
   if (/[A-Z]/.test(pwd)) strength++
-  if (/[0-9]/.test(pwd)) strength++
-  if (/[^a-zA-Z0-9]/.test(pwd)) strength++
+  if (/\d/.test(pwd)) strength++
+  if (/[^a-zA-Z\d]/.test(pwd)) strength++
   
   if (strength <= 1) return { level: 1, text: 'Faible' }
   if (strength === 2) return { level: 2, text: 'Moyen' }
@@ -116,7 +116,7 @@ function handleBack(): void {
                 :type="showPassword ? 'text' : 'password'"
                 class="form-group__input"
                 placeholder="Minimum 8 caractères"
-                autocomplete="new-password"
+                :autocomplete="showPassword ? 'off' : 'new-password'"
                 required
                 minlength="8"
               />
@@ -149,7 +149,7 @@ function handleBack(): void {
                 class="form-group__input"
                 :class="{ 'form-group__input--error': confirmPassword && !passwordsMatch }"
                 placeholder="Répétez le mot de passe"
-                autocomplete="new-password"
+                :autocomplete="showConfirmPassword ? 'off' : 'new-password'"
                 required
                 minlength="8"
               />

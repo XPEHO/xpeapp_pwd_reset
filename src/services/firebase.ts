@@ -18,13 +18,8 @@ export function getFirebaseAuth(): Auth {
     throw new Error('Firebase non configuré. Créez un fichier .env.local avec vos clés Firebase.')
   }
   
-  if (!app) {
-    app = initializeApp(firebaseConfig)
-  }
-  
-  if (!auth) {
-    auth = getAuth(app)
-  }
+  app ??= initializeApp(firebaseConfig)
+  auth ??= getAuth(app)
   
   return auth
 }
