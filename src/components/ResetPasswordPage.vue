@@ -5,6 +5,7 @@ import { useAuthStore } from '@/stores/auth'
 import { RouteName } from '@/types/auth'
 import AppButton from '@/components/ui/AppButton.vue'
 import { ButtonColor } from '@/types/button'
+import { resetPasswordWithApi } from '@/services/authService'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -27,13 +28,11 @@ const isFormValid = computed(() =>
 const passwordStrength = computed(() => {
   const pwd = password.value
   if (pwd.length < 8) return { level: 0, text: 'Trop court' }
-  
   let strength = 0
   if (/[a-z]/.test(pwd)) strength++
   if (/[A-Z]/.test(pwd)) strength++
   if (/\d/.test(pwd)) strength++
   if (/[^a-zA-Z\d]/.test(pwd)) strength++
-  
   if (strength <= 1) return { level: 1, text: 'Faible' }
   if (strength === 2) return { level: 2, text: 'Moyen' }
   if (strength === 3) return { level: 3, text: 'Fort' }
@@ -41,27 +40,35 @@ const passwordStrength = computed(() => {
 })
 
 async function handleSubmit(): Promise<void> {
-  if (!isFormValid.value) return
+  if (!isFormValid.value || isLoading.value) return
+  
+  if (!authStore.userEmail) {
+    errorMessage.value = "Impossible de récupérer l'adresse email. Veuillez vous reconnecter.";
+    return;
+  }
   
   errorMessage.value = ''
+  successMessage.value = ''
   isLoading.value = true
   
   try {
-    // Simulation d'un appel API
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
+    await resetPasswordWithApi(
+      authStore.userEmail, 
+      password.value, 
+      confirmPassword.value
+    )
+
     successMessage.value = 'Votre mot de passe a été modifié avec succès !'
     password.value = ''
     confirmPassword.value = ''
-    
+
     setTimeout(() => {
-      // TODO: Rediriger vers l'app ou la page de confirmation
       authStore.clearUser()
       router.push({ name: RouteName.Login })
-    }, 2000)
-  } catch (error) {
-    errorMessage.value = 'Une erreur est survenue. Veuillez réessayer.'
-    console.error(error)
+    }, 2500)
+
+  } catch (error: any) {
+    errorMessage.value = error.message || 'Une erreur est survenue. Veuillez réessayer.'
   } finally {
     isLoading.value = false
   }
