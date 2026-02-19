@@ -69,7 +69,7 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
         <h1 class="password-reset__title">Mot de passe oublié ?</h1>
 
         <p class="password-reset__subtitle">
-          Connectez-vous avec votre compte que vous utiliser sur XpeApp ! pour réinitialiser votre mot de passe
+          Connectez-vous avec votre compte que vous utiliser sur XpeApp ! Pour réinitialiser votre mot de passe
         </p>
       </header>
 
@@ -104,13 +104,7 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
 
       <footer class="password-reset__footer">
         <p>
-          Besoin d'aide ?
-          <a
-            href="mailto:theo.lbg18@gmail.com"
-            class="password-reset__support-link"
-          >
-            Contactez le support
-          </a>
+          Besoin d'aide ? Contactez <span class="password-reset__support-link">XPEHO</span>
         </p>
       </footer>
     </section>
