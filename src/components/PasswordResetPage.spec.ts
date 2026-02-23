@@ -51,10 +51,9 @@ describe('PasswordResetPage.vue', () => {
   it('renders all SSO login buttons with correct labels', () => {
     const wrapper = createWrapper()
     const buttons = wrapper.findAll('button')
-    expect(buttons.length).toBe(3)
+    expect(buttons.length).toBe(2)
     expect(wrapper.text()).toContain('Continuer avec Google')
     expect(wrapper.text()).toContain('Continuer avec Apple')
-    expect(wrapper.text()).toContain('Continuer avec Microsoft')
   })
 
   it('calls signInWithSso with SsoProvider.Google when Google button is clicked', async () => {

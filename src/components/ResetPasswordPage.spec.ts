@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ResetPasswordPage from './ResetPasswordPage.vue'
 import { SsoProvider, RouteName } from '@/types/auth'
 import { useAuthStore } from '@/stores/auth'
+import * as authService from '@/services/authService'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -150,6 +151,7 @@ describe('ResetPasswordPage.vue', () => {
   })
 
   it('submits the form and shows a success message when passwords are valid and match', async () => {
+    vi.spyOn(authService, 'resetPasswordWithApi').mockResolvedValue(true)
     const wrapper = createWrapper()
     const passwordInput = wrapper.find('#password')
     const confirmInput = wrapper.find('#confirm-password')
