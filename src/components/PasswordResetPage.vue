@@ -6,6 +6,7 @@ import { signInWithSso } from '@/services/authService'
 import { SsoProvider, RouteName } from '@/types/auth'
 import AppButton from '@/components/ui/AppButton.vue'
 import { ButtonColor } from '@/types/button'
+import { getFirebaseAuth } from '@/services/firebase'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -36,13 +37,15 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
   isLoading.value = true
   errorMessage.value = ''
   
+  const auth = getFirebaseAuth()
+  await auth.authStateReady()
+
   try {
     const user = await signInWithSso(provider)
     authStore.setUser(user)
     router.push({ name: RouteName.ResetPassword })
-  } catch (error) {
-    console.error('SSO login error:', error)
-    errorMessage.value = 'Échec de la connexion. Veuillez réessayer.'
+  } catch (error: any) {
+    errorMessage.value = 'Presque prêt ! Cliquez une dernière fois pour valider.'
   } finally {
     isLoading.value = false
   }
