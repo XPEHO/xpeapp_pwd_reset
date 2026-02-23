@@ -29,11 +29,6 @@ const ssoButtons: SsoButton[] = [
     provider: SsoProvider.Apple,
     label: 'Continuer avec Apple',
     color: ButtonColor.Apple
-  },
-  {
-    provider: SsoProvider.Microsoft,
-    label: 'Continuer avec Microsoft',
-    color: ButtonColor.Microsoft
   }
 ]
 
