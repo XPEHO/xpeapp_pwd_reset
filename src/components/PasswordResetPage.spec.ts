@@ -5,9 +5,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import PasswordResetPage from './PasswordResetPage.vue'
 import { SsoProvider, RouteName } from '@/types/auth'
 
-// Mock authService
+
+// Mock authService et getFirebaseAuth pour éviter tout appel réel à Firebase
 vi.mock('@/services/authService', () => ({
   signInWithSso: vi.fn()
+}))
+vi.mock('@/services/firebase', () => ({
+  getFirebaseAuth: () => ({
+    authStateReady: () => Promise.resolve()
+  })
 }))
 
 import { signInWithSso } from '@/services/authService'
