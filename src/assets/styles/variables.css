@@ -1,0 +1,36 @@
+:root {
+  /* XPEHO Brand Colors */
+  --color-primary: #A0CE4E;
+  --color-primary-hover: #8FBB3D;
+  --color-background: #E6ECEF;
+  --color-white: #FFFFFF;
+  --color-text-dark: #333333;
+  --color-text-light: #666666;
+  
+  /* SSO Provider Colors */
+  --color-google: #4285F4;
+  --color-google-hover: #357ABD;
+  --color-apple: #000000;
+  --color-apple-hover: #333333;
+  --color-microsoft: #00A4EF;
+  --color-microsoft-hover: #0078D4;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  
+  /* Font Sizes */
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+}
