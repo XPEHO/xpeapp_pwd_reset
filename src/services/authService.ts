@@ -116,7 +116,6 @@ export async function resetPasswordWithApi(
   if (!response.ok) {
     let errorMessage = 'Une erreur est survenue lors de la modification.'
     
-    try {
       const errorData = await response.json()
       
       // Specific case: User not found
@@ -131,9 +130,6 @@ export async function resetPasswordWithApi(
       else if (errorData.message) {
         errorMessage = errorData.message
       }
-    } catch (e) {
-    }
-
     throw new Error(errorMessage)
   }
 
