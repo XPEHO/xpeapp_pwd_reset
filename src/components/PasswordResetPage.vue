@@ -47,13 +47,26 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
 
   try {
     const user = await signInWithSso(provider)
-    authStore.setUser(user)
-    router.push({ name: RouteName.ResetPassword })
+    if (user) {
+      authStore.setUser(user)
+      router.push({ name: RouteName.ResetPassword })
+    }
   } catch (error: any) {
-    errorMessage.value = 'Presque prêt ! Cliquez une dernière fois pour valider.'
+    handleLoginError(error, provider)
   } finally {
-    isLoading.value = false
+    if (provider !== SsoProvider.Microsoft) {
+      isLoading.value = false
+    }
   }
+}
+
+function handleLoginError(error: any, provider: SsoProvider) {
+  const isCancelled = error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request'
+  const isRedirect = provider === SsoProvider.Microsoft
+  
+  if (isRedirect || isCancelled) return 
+
+  errorMessage.value = 'Presque prêt ! Cliquez une dernière fois pour valider.'
 }
 </script>
 
