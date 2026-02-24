@@ -51,9 +51,10 @@ describe('PasswordResetPage.vue', () => {
   it('renders all SSO login buttons with correct labels', () => {
     const wrapper = createWrapper()
     const buttons = wrapper.findAll('button')
-    expect(buttons.length).toBe(2)
+    expect(buttons.length).toBe(3)
     expect(wrapper.text()).toContain('Continuer avec Google')
     expect(wrapper.text()).toContain('Continuer avec Apple')
+    expect(wrapper.text()).toContain('Continuer avec Microsoft')
   })
 
   it('calls signInWithSso with SsoProvider.Google when Google button is clicked', async () => {
@@ -82,7 +83,7 @@ describe('PasswordResetPage.vue', () => {
     await flushPromises()
 
     expect(wrapper.find('[role="alert"]').exists()).toBe(true)
-    expect(wrapper.text()).toContain('Échec de la connexion')
+    expect(wrapper.text()).toContain('Cliquez une dernière fois pour valider')
   })
 
   it('navigates to the reset password page on successful SSO login', async () => {

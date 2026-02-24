@@ -30,6 +30,11 @@ const ssoButtons: SsoButton[] = [
     provider: SsoProvider.Apple,
     label: 'Continuer avec Apple',
     color: ButtonColor.Apple
+  },
+  {
+    provider: SsoProvider.Microsoft,
+    label: 'Continuer avec Microsoft',
+    color: ButtonColor.Microsoft
   }
 ]
 
@@ -222,7 +227,6 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
 
 .password-reset__support-link {
   color: var(--reset-support-link, var(--color-primary));
-  text-decoration: underline;
   transition: color 0.2s ease;
 }
 
