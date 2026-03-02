@@ -28,7 +28,6 @@ describe('AppButton.vue', () => {
     const colors = [
       ButtonColor.Google,
       ButtonColor.Apple,
-      ButtonColor.Microsoft,
       ButtonColor.Red,
       ButtonColor.White,
       ButtonColor.Green
@@ -87,7 +86,6 @@ describe('AppButton.vue', () => {
       ButtonColor.Green,
       ButtonColor.Google,
       ButtonColor.Apple,
-      ButtonColor.Microsoft
     ]
     colors.forEach((color) => {
       const wrapper = mount(AppButton, {

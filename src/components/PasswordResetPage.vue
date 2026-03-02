@@ -30,11 +30,6 @@ const ssoButtons: SsoButton[] = [
     provider: SsoProvider.Apple,
     label: 'Continuer avec Apple',
     color: ButtonColor.Apple
-  },
-  {
-    provider: SsoProvider.Microsoft,
-    label: 'Continuer avec Microsoft',
-    color: ButtonColor.Microsoft
   }
 ]
 
@@ -53,18 +48,13 @@ async function handleSsoLogin(provider: SsoProvider): Promise<void> {
     }
   } catch (error: any) {
     handleLoginError(error, provider)
-  } finally {
-    if (provider !== SsoProvider.Microsoft) {
-      isLoading.value = false
-    }
-  }
+  } 
 }
 
 function handleLoginError(error: any, provider: SsoProvider) {
   const isCancelled = error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request'
-  const isRedirect = provider === SsoProvider.Microsoft
   
-  if (isRedirect || isCancelled) return 
+  if (isCancelled) return 
 
   errorMessage.value = 'Presque prêt ! Cliquez une dernière fois pour valider.'
 }
@@ -217,16 +207,6 @@ function handleLoginError(error: any, provider: SsoProvider) {
   width: 1.25rem;
   height: 1.25rem;
   background-image: url('@/assets/svg/apple.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.sso-button__icon--microsoft::before {
-  content: '';
-  display: block;
-  width: 1.25rem;
-  height: 1.25rem;
-  background-image: url('@/assets/svg/microsoft.svg');
   background-size: contain;
   background-repeat: no-repeat;
 }

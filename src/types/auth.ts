@@ -1,7 +1,6 @@
 export enum SsoProvider {
   Google = 'google',
   Apple = 'apple',
-  Microsoft = 'microsoft'
 }
 
 export enum RouteName {

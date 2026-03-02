@@ -134,22 +134,6 @@ defineEmits<{
   color: var(--button-apple-text, #ffffff);
 }
 
-/* MICROSOFT BUTTON VARIANT */
-.button-microsoft {
-  background-color: var(--color-microsoft);
-  border-color: color-mix(in srgb, var(--color-microsoft), #000 15%);
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--color-microsoft), #000 15%);
-}
-
-.button-microsoft:active:not(:disabled) {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.15) !important;
-}
-
-.button-microsoft .button-text {
-  color: var(--button-microsoft-text, #ffffff);
-}
-
 /* ========================================
    BUTTON TEXT STYLES
 ======================================== */
