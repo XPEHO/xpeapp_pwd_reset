@@ -51,15 +51,6 @@ describe('authService module', () => {
       expect(user.email).toBe('demo@example.com')
     })
 
-    it('returns a demo user for Microsoft provider when Firebase is not configured', async () => {
-      vi.mocked(isFirebaseConfigured).mockReturnValue(false)
-
-      const user = await signInWithSso(SsoProvider.Microsoft)
-
-      expect(user.provider).toBe(SsoProvider.Microsoft)
-      expect(user.email).toBe('demo@example.com')
-    })
-
     it('calls signInWithPopup for Google when Firebase is configured', async () => {
       vi.mocked(isFirebaseConfigured).mockReturnValue(true)
       vi.mocked(getFirebaseAuth).mockReturnValue({} as any)
@@ -92,23 +83,6 @@ describe('authService module', () => {
       expect(signInWithPopup).toHaveBeenCalled()
       expect(user.email).toBe('user@icloud.com')
       expect(user.provider).toBe(SsoProvider.Apple)
-    })
-
-    it('calls signInWithPopup for Microsoft when Firebase is configured', async () => {
-      vi.mocked(isFirebaseConfigured).mockReturnValue(true)
-      vi.mocked(getFirebaseAuth).mockReturnValue({} as any)
-      vi.mocked(signInWithPopup).mockResolvedValue({
-        user: {
-          email: 'user@outlook.com',
-          displayName: 'Microsoft User'
-        }
-      } as any)
-
-      const user = await signInWithSso(SsoProvider.Microsoft)
-
-      expect(signInWithPopup).toHaveBeenCalled()
-      expect(user.email).toBe('user@outlook.com')
-      expect(user.provider).toBe(SsoProvider.Microsoft)
     })
 
     it('throws an error when the user email is not available after SSO login', async () => {

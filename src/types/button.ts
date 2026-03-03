@@ -4,5 +4,4 @@ export enum ButtonColor {
   Green = 'green',
   Google = 'google',
   Apple = 'apple',
-  Microsoft = 'microsoft'
 }

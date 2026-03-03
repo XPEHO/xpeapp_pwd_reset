@@ -9,13 +9,9 @@ import { SsoProvider, type AuthUser } from '@/types/auth'
 
 const googleProvider = new GoogleAuthProvider()
 const appleProvider = new OAuthProvider('apple.com')
-const microsoftProvider = new OAuthProvider('microsoft.com')
 
 appleProvider.addScope('email')
 appleProvider.addScope('name')
-
-microsoftProvider.addScope('email')
-microsoftProvider.addScope('profile')
 
 const API_BACKEND_URL = import.meta.env.VITE_API_BACKEND_URL
 const SERVICE_ACCOUNT_USERNAME = import.meta.env.VITE_SERVICE_ACCOUNT_USERNAME
@@ -41,9 +37,6 @@ export async function signInWithSso(provider: SsoProvider): Promise<AuthUser> {
       break
     case SsoProvider.Apple:
       credential = await signInWithPopup(auth, appleProvider)
-      break
-    case SsoProvider.Microsoft:
-      credential = await signInWithPopup(auth, microsoftProvider)
       break
     default:
       throw new Error(`Provider non supporté: ${provider}`)

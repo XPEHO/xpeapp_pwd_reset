@@ -1,5 +1,8 @@
 ## 1.0.0 - Initial Release
 
+_Fix_ 
+- Remove the Microsoft SSO button from the "Forgot password" page
+
 _Feat_
 - "Forgot password" page with SSO login (Google, Apple, Microsoft)
 - Password reset page with validation
